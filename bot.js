@@ -3,7 +3,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const roleId = 732786744336056351n;
+const roleId = 728383143081541742n;
 const generalId = '727942202747256844';
 const coloId = '727956762489258157';
 const memberId = 727956398713077789n;
