@@ -10,39 +10,34 @@ const memberId = 727956398713077789n;
 const ogId = 727956256794607637n;
 
 client.on('ready', () => {
-    console.log('I am ready!');
+  console.log('I am ready!');
 });
-  
+
 client.on('message', function(message) {
-    const generalChannel = client.channels.cache.get(generalId);
-    const coloChannel = client.channels.cache.get(coloId);
-    
-    if (message.content === "$loop") { 
-        var interval = setInterval (function () {
-            const date = new Date();
-            const hour = date.getUTCHours();
-            const minute = date.getUTCMinutes();
+  const generalChannel = client.channels.cache.get(generalId);
+  const coloChannel = client.channels.cache.get(coloId);
 
-            if (
-            (hour === 22 && minute === 30) ||
-            (hour === 0 && minute === 30) ||
-            (hour === 2 && minute === 30) ||
-            (hour === 11 && minute === 30) ||
-            (hour === 18 && minute === 30) ||
-            (hour === 20 && minute === 30)
-            ) {
-                generalChannel.send(`<@&${roleId}> Swords up!`).catch(console.error);
-            }
+  const upHours = [0, 2, 11, 18, 20, 22];
 
-            if (hour === 18 && minute === 55) {
-                colo.send(`<@&${memberId}><@&${ogId}> Colosseum stars in 5 minutes`).catch(console.error);
-            }
-            
-            if (hour === 19 && minute === 0) {
-                colo.send(`<@&${memberId}><@&${ogId}> Colosseum started`).catch(console.error);
-            }
-        }, 60000); 
-    }
+  if (message.content === '$loop') {
+    var interval = setInterval(function() {
+      const date = new Date();
+      const hour = date.getUTCHours();
+      const minute = date.getUTCMinutes();
+
+      if (upHours.includes(hour) && minute === 30) {
+        generalChannel.send(`<@&${roleId}> Swords up!`).catch(console.error);
+      }
+
+      if (hour === 18 && minute === 55) {
+        colo.send(`<@&${memberId}><@&${ogId}> Colosseum stars in 5 minutes`).catch(console.error);
+      }
+
+      if (hour === 19 && minute === 0) {
+        colo.send(`<@&${memberId}><@&${ogId}> Colosseum started`).catch(console.error);
+      }
+    }, 60000);
+  }
 });
 
 client.login(process.env.BOT_TOKEN);
