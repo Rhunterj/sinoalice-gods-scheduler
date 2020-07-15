@@ -38,10 +38,10 @@ client.on('message', function(message) {
                 colo.send(`<@&${memberId}><@&${ogId}> Colosseum stars in 5 minutes`).catch(console.error);
             }
             
-            if (hour === 19) {
+            if (hour === 19 && minute === 0) {
                 colo.send(`<@&${memberId}><@&${ogId}> Colosseum started`).catch(console.error);
             }
-        }, 6000); 
+        }, 60000); 
     }
 });
 
