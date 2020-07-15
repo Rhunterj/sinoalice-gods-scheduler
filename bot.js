@@ -3,20 +3,21 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const roleId = 728383143081541742n;
-const generalId = '727942202747256844';
-const coloId = '727956762489258157';
-const memberId = 727956398713077789n;
-const ogId = 727956256794607637n;
 
 client.on('ready', () => {
   console.log('I am ready!');
 });
 
 client.on('message', function(message) {
+  const roleId = 728383143081541742n;
+  const generalId = '727942202747256844';
+  const coloId = '727956762489258157';
+  const memberId = 727956398713077789n;
+  const ogId = 727956256794607637n;
+  
   const generalChannel = client.channels.cache.get(generalId);
   const coloChannel = client.channels.cache.get(coloId);
-
+  
   const upHours = [0, 2, 11, 18, 20, 22];
 
   if (message.content === '$loop') {
@@ -30,11 +31,11 @@ client.on('message', function(message) {
       }
 
       if (hour === 18 && minute === 55) {
-        colo.send(`<@&${memberId}><@&${ogId}> Colosseum stars in 5 minutes`).catch(console.error);
+        coloChannel.send(`<@&${memberId}><@&${ogId}> Colosseum stars in 5 minutes`).catch(console.error);
       }
 
       if (hour === 19 && minute === 0) {
-        colo.send(`<@&${memberId}><@&${ogId}> Colosseum started`).catch(console.error);
+        coloChannel.send(`<@&${memberId}><@&${ogId}> Colosseum started`).catch(console.error);
       }
     }, 60000);
   }
