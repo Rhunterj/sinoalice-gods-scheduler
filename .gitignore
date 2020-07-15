@@ -1,0 +1,8 @@
+# Auth token
+auth.json
+
+# Lock file
+yarn.lock
+
+# Dependency directories
+node_modules/
